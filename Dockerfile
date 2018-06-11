@@ -7,7 +7,21 @@ RUN set -ex; \
         ceph-fuse \
     ; \
     rm -rf /var/lib/apt/lists/*; \
-\
+    \
+# entrypoint.sh and cron.sh dependencies
+RUN set -ex; \
+    \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        rsync \
+        bzip2 \
+        busybox-static \
+    ; \
+    rm -rf /var/lib/apt/lists/*; \
+    \
+    mkdir -p /var/spool/cron/crontabs; \
+    echo '*/15 * * * * php -f /var/www/html/cron.php' > /var/spool/cron/crontabs/www-data
+
 # install the PHP extensions we need
 # see https://docs.nextcloud.com/server/12/admin_manual/installation/source_installation.html
 RUN set -ex; \
@@ -129,4 +143,4 @@ COPY *.sh /
 COPY config/* /usr/src/nextcloud/config/
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["apache2-foreground"] 
+CMD ["apache2-foreground"]
