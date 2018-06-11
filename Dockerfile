@@ -1,11 +1,5 @@
 FROM php:7.1-apache-stretch
 
-RUN set -ex; \
-    \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
-        ceph-fuse \
-    ; \
 # entrypoint.sh and cron.sh dependencies
 RUN set -ex; \
     \
@@ -136,7 +130,13 @@ RUN set -ex; \
     \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
     rm -rf /var/lib/apt/lists/*
-
+    \
+RUN set -ex; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+    ceph-fuse \
+    ;\
+\
 COPY *.sh /
 COPY config/* /usr/src/nextcloud/config/
 
