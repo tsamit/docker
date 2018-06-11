@@ -138,4 +138,3 @@ RUN set -ex; \
     ;\
 \
 
-CMD ["apache2-foreground"]
