@@ -137,4 +137,5 @@ RUN set -ex; \
     ceph-fuse \
     ;\
 \
+
 CMD ["apache2-foreground"]
