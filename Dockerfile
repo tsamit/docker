@@ -137,8 +137,6 @@ RUN set -ex; \
     ceph-fuse \
     ;\
 \
-#COPY *.sh /
-#COPY config/* /usr/src/nextcloud/config/
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["apache2-foreground"]
