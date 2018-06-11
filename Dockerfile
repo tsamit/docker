@@ -137,6 +137,4 @@ RUN set -ex; \
     ceph-fuse \
     ;\
 \
-
-ENTRYPOINT ["/entrypoint.sh"]
 CMD ["apache2-foreground"]
