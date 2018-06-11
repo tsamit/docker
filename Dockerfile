@@ -6,8 +6,6 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends \
         ceph-fuse \
     ; \
-    rm -rf /var/lib/apt/lists/*; \
-    \
 # entrypoint.sh and cron.sh dependencies
 RUN set -ex; \
     \
